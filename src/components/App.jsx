@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { GlobalStyle } from './GlobalStyle';
+import { Layout } from './Layout/Layout';
 import { Notification } from './Notification/Notification';
 import { Section } from './Section/Section';
 import { Statistics } from './Statistics/Statistics';
@@ -27,14 +29,13 @@ export class App extends Component {
     const total = this.countTotalFeedback(this.state);
 
     return (
-      <div>
+      <Layout>
         <Section title='Please leave feedback'>
           <FeedbackOptions
           items={Object.keys(this.state)}
           onLeaveFeedback={this.handleClick}
           />
         </Section>
-        
         <Section title='Statistics'>
           {total?(<Statistics
           good={good}
@@ -45,9 +46,9 @@ export class App extends Component {
           />) : (
               <Notification message='There is no feedback'/>
           )}
-        
-          </Section>
-      </div>
+        </Section>
+        <GlobalStyle/>
+      </Layout>
     );
   }
 }
